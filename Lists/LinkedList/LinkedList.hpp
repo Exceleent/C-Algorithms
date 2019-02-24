@@ -7,11 +7,13 @@ class LinkedList
         Node *next;
     };
 
-  public:
-    LinkedList();
+  private:
     Node *head;
     Node *tail;
     int list_size;
+    
+  public:
+    LinkedList();
     void push_front(int x);
     int pop_front();
     void push_back(int x);
