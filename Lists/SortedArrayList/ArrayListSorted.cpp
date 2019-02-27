@@ -126,27 +126,31 @@ SortedArrayList SortedArrayList::merge(const SortedArrayList &a, const SortedArr
   int b_index = 0;
   int avalue;
   int bvalue;
-  int size = a.size() + b.size();
+  int a_size = a.size();
+  int b_size = b.size();
+  int size = a_size + b_size;
   SortedArrayList *Sum = new SortedArrayList();
   for (int i = 0; i < size; i++)
   {
     avalue = a.getelement(a_index);
     bvalue = b.getelement(b_index);
     // std::cout << avalue <<"\n" <<bvalue ;
-    if (avalue < bvalue)
+    if (avalue < bvalue && (a_index !=(a_size)))
     {
-      Sum->array[i] = a.getelement(a_index);
+      Sum->array[i] = avalue;
       a_index++;
       Sum->nums++;
       //std::cout << Sum.array[i] <<"\n";
     }
     else
     {
-      Sum->array[i] = b.getelement(b_index);
+      Sum->array[i] = bvalue;
       b_index++;
       Sum->nums++;
       //std::cout << Sum.array[i] << "\n";
     }
+    avalue = 0;
+    bvalue = 0;
   }
   return *Sum;
 }
