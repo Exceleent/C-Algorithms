@@ -1,6 +1,6 @@
 class SortedArrayList
 {
-  public:
+  private:
     int *array;
     int nums;
 
