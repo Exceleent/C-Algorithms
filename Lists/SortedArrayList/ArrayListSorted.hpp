@@ -6,15 +6,15 @@ class SortedArrayList
 
   public:
     SortedArrayList();
-    void push(int x);   // Wstawia element 'x'
-    int pop();          // Zwraca i usuwa pierwszy (najmniejszy) element
-    int erase(int i);   // Usuwa element na pozycji 'i' i zwraca jego wartość
-    int find(int x);    // Zwraca pozycję elementu o wartości 'x' lub -1 gdy nie znaleziono
-    int size() const;   // Zwraca liczbę elementów w liście
-    void remove(int x); // Usuwa wszystkie elementy równe 'x'
+    void push(int x);   // push element 'x'
+    int pop();          // return and pop first element
+    int erase(int i);   // erase element at position 'i' and return his value
+    int find(int x);    // return position of element, or -1 if 'x' is not in list
+    int size() const;   // return size of list
+    void remove(int x); // remove all elements 'x'
     static SortedArrayList merge(const SortedArrayList &a, const SortedArrayList &b);
-    // Scala dwie posortowane listy i zwraca posortowaną listę
-    int getelement(int index) const;
-    void unique(); // Usuwa sąsiadujące duplikaty
-    void print();  // Wypisuje elementy listy w porządku rosnącym
+    // merge two list
+    int getelement(int index) const; 
+    void unique(); // Delete duplication
+    void print();  
 };
