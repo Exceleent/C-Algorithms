@@ -4,8 +4,9 @@ class SortedLinkedList {  // Klasa listy
         Node* prev;     // Wskaźnik do poprzedniego węzła
         Node* next;     // Wskaźnik do kolejnego węzła
     };
-    public:
+    private:
     int nums;
+    public:
     SortedLinkedList();
     Node* head;         // Wskaźnik do pierwszego węzła
     Node* tail;         // Wskaźnik do ostatniego węzła
