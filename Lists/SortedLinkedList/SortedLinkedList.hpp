@@ -1,26 +1,26 @@
-class SortedLinkedList {  // Klasa listy
-    struct Node {       // Zagnieżdżona klasa węzła
-        int x;          // Element przechowywany przez węzeł listy
-        Node* prev;     // Wskaźnik do poprzedniego węzła
-        Node* next;     // Wskaźnik do kolejnego węzła
+class SortedLinkedList {  // List Class
+    struct Node {       //  Node Class
+        int x;          // Element inside(value)
+        Node* prev;     // Pointer to previous node
+        Node* next;     // Pointer to next node
     };
     private:
-    int nums;
+    int nums; // size of list
     public:
     SortedLinkedList();
-    Node* head;         // Wskaźnik do pierwszego węzła
-    Node* tail;         // Wskaźnik do ostatniego węzła
-    void push(int x);   // Wstawia element 'x'
-    int pop();          // Zwraca i usuwa pierwszy (najmniejszy) element
-    int erase(int i);   // Usuwa element na pozycji 'i' i zwraca jego wartość
-    int find(int x);    // Zwraca pozycję elementu o wartości 'x' lub -1 gdy nie znaleziono
-    int size()const;         // Zwraca liczbę elementów w liście
-    void remove(int x); // Usuwa wszystkie elementy równe 'x'
+    Node* head;         // Pointer to first node
+    Node* tail;         // Pointer to last node
+    void push(int x);   // Push element 'x'
+    int pop();          // return 'x' of head and pop head
+    int erase(int i);   // remove node at'i' position and return his value 
+    int find(int x);    // return position of 'x', or -1 if there is no such element in list 
+    int size()const;   
+    void remove(int x); // remove all elements with value 'x'
     static SortedLinkedList merge(const SortedLinkedList& a, const SortedLinkedList& b);
-                        // Scala dwie posortowane listy i zwraca posortowaną listę
+                        // merge two lists
     int get(int) const;
-    void unique();      // Usuwa sąsiadujące duplikaty
-    void print();       // W                           // 
+    void unique();      // Delete duplication
+    void print();     
 
 };
 
