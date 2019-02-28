@@ -231,8 +231,8 @@ void SortedLinkedList::unique()
 	{
 		if (temp->x == temp->next->x)
 		{
-			remove(temp->x); // usuwamy wszystkie powtorzenia
-			push(temp->x); // dodajemy element
+			remove(temp->x);
+			push(temp->x); 
 		}
 		temp = temp->next;
 	}
