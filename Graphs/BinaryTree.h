@@ -14,8 +14,7 @@ class BinaryTree {
  BinaryTree();
  void insert(int x); 
  Root* searchRecursive(int x); 
- bool searchIterative(int x); 
- Root* searchIterative_TRO(int x );
+ Root* searchIterative(int x );
 int size(); 
 int minimum();  
 int maximum();  
