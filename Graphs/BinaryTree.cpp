@@ -50,7 +50,7 @@ void BinaryTree::insert(int x)
     }
 }
 
-BinaryTree::Root *BinaryTree::searchIterative_TRO(int x)
+BinaryTree::Root *BinaryTree::searchIterative(int x)
 {
     Root *returning = new Root;
     returning->left_child = NULL;
