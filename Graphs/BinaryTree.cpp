@@ -49,49 +49,6 @@ void BinaryTree::insert(int x)
         }
     }
 }
-// Do Zmiany
-bool BinaryTree::searchIterative(int x)
-{
-    Root *returning = new Root;
-    returning->left_child = NULL;
-    returning->right_child = NULL;
-    returning->parent = NULL;
-    if (size_of_Tree == 0)
-    {
-        std::cout << "Tree is empty ";
-        return false;
-    }
-    else
-    {
-        Root *temporary_root = new Root;
-        temporary_root = root;
-        while (true)
-        {
-            while (temporary_root->value >= x)
-            {
-                if (temporary_root->value == x)
-                {
-                    // returning = temporary_root;
-                    return true;
-                }
-                if (temporary_root->left_child == NULL)
-                    return false;
-                temporary_root = temporary_root->left_child;
-            }
-            while (temporary_root->value <= x)
-            {
-                if (temporary_root->value == x)
-                {
-                    // returning = temporary_root;
-                    return true;
-                }
-                if (temporary_root->right_child == NULL)
-                    return false;
-                temporary_root = temporary_root->right_child;
-            }
-        }
-    }
-}
 
 BinaryTree::Root *BinaryTree::searchIterative_TRO(int x)
 {
@@ -101,7 +58,7 @@ BinaryTree::Root *BinaryTree::searchIterative_TRO(int x)
     returning->parent = NULL;
     if (size_of_Tree == 0)
     {
-        std::cout << "Nie ma co zwrocic ";
+        std::cout << "Tree is empty";
         return NULL;
     }
     else
@@ -133,16 +90,8 @@ BinaryTree::Root *BinaryTree::searchIterative_TRO(int x)
                 temporary_root = temporary_root->right_child;
             }
         }
-        if (temporary_root->value == x)
-        {
-            returning = temporary_root;
-            return returning;
-        }
-        else
-            return NULL;
-    }
 }
-
+    
 int BinaryTree::size()
 {
     return size_of_Tree;
@@ -215,8 +164,6 @@ int BinaryTree::depth(Root *node)
             return (right_path + 1);
     }
 }
-/*****************************************************************************************************************************************************/
-/*$$$$$$$$ ZADANIE 2 $$$$$$$$$$*/
 
 void BinaryTree::Print_iterative()
 {
