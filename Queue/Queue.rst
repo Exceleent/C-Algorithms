@@ -29,3 +29,7 @@ Example
 ----------
 .. code-block:: shell
 ./Interface n << example_input.txt 
+2123123
+213123123
+
+123123123
