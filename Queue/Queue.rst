@@ -16,7 +16,7 @@ Functions
 
 Interface
 ----------
-Input format number(n) which holds information about how many operation we want to do, and n command lines.<br\>
+Input format number(n) which holds information about how many operation we want to do, and n command lines.
 Type of operations:
 - F x - push x.
 - B x - same as above.
