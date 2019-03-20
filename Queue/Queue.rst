@@ -18,12 +18,12 @@ Interface
 ----------
 Input format number(n) which holds information about how many operation we want to do, and n command lines.
 Type of operations:
-- F x - push x.
-- B x - same as above.
-- f - pop and print value of the element, if queue is empty print "EMPTY".
-- b - same as above.
-- S - print size.
-- C x - do nothing.
+* F x - push x.
+* B x - same as above.
+* f - pop and print value of the element, if queue is empty print "EMPTY".
+* b - same as above.
+* S - print size.
+* C x - do nothing.
 
 Example
 ----------
