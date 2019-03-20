@@ -1,5 +1,5 @@
-# C-Algorithms
-Basic Data Structures - stack, queue , list, heap , BST.<br />
-This repository contains implementation of data structures, but also simple program based around those structures.
-### Queue 
+# C++-Algorithms
+This repository contains my implementation of data structures.
+### Features
+* [Queue](https://github.com/Exceleent/C-Algorithms/tree/master/Queue)
 
