@@ -27,9 +27,5 @@ Type of operations:
 
 Example
 ----------
-.. code-block:: shell
-./Interface n << example_input.txt 
-2123123
-213123123
+          ./Interface n << example_input.txt 
 
-123123123
