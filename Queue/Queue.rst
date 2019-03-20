@@ -8,11 +8,11 @@ We can only remove  entities from the front terminal position, this makes Queue 
 
 Functions
 ------------
-* push(x) - push x element on the top of queue.
-* pop() - remove last element of queue.
-* showfront() - return first element of queue. 
-* size() - return size of queue.
-* empty() - checks if queue is empty.
+ * push(x) - push x element on the top of queue.
+ * pop() - remove last element of queue.
+ * showfront() - return first element of queue. 
+ * size() - return size of queue.
+ * empty() - checks if queue is empty.
 
 Interface
 ----------
