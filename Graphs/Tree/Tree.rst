@@ -10,27 +10,19 @@ In my implementation of a tree I used structure Node. Each node holds his value 
 
 Function
 ------------
-* Tree();
-* Tree(const Tree &tree);
-* void insert(V x);
-* int size() const;
-* Node *return_root() const;
-* void print();
-* Tree swap(Tree swap, V parent1, V value1, V parent2, V value2);
-* Node *find_node(V parent, V value);
-* void catch_node(V parent, V value);
+* insert(V x) - Adding element x to the tree ;
+* size() const - Return size of tree;
+* return_root() const - Return root of the tree;
+* print() - Print tree InOrder;
+* swap(Tree swap, V parent1, V value1, V parent2, V value2) - swapping subtrees roots are defined by arguemnts;
+* find_node(V parent, V vale) - Return defined node by arguments, if there is no such node return NULL;
+* catch_node(V parent, V value) - Find node and then print information about him in details ;
 
-Interface
+main.cpp
 ----------
-Input format n lines of operations.
-Type of operations:
- * F x - push x.
- * B x - same as above.
- * f - pop and print value of the element, if queue is empty print "EMPTY".
- * b - same as above.
- * S - print size.
- * C x - do nothing.
+Program creates set of trees size defined by user. Then randomly choose 2 trees, and allows user to swap their subtrees.
 
-Example
+Compiling and running
 ----------
-          ./Interface << example_input.txt 
+   Compiling:       g++ -std=c++17 Tree.cpp main.cpp -o main
+   Runing:          ./main
