@@ -5,7 +5,7 @@ In computer science, a tree is a widely used abstract data type (ADT)—or data 
 
 Quick Overview
 --------------
-In my implementation of a tree I used structure Node. Each node holds his value , pointer to the parent and vector of pointers to his children.
+In my implementation of a tree I used structure Node. Each node holds his value , pointer to the parent and vector of pointers to his children(Wrote in c++ standard 17 ).
 
 
 Function
@@ -21,8 +21,3 @@ Function
 main.cpp
 ----------
 Program creates set of trees size defined by user. Then randomly choose 2 trees, and allows user to swap their subtrees.
-
-Compiling and running
-----------
-Compiling:       g++ -std=c++17 Tree.cpp main.cpp -o main <br\>
-Runing:          ./main
