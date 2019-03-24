@@ -2,11 +2,13 @@
 #include <unistd.h>
 #include <time.h>
 #include <stdlib.h>
+#define MAX_NB_OF_TREES 5
+#define MAX_SZ_OF_TREE 7;
 
 void Create_Trees(int max_number_of_trees, int max_size_of_tree);
 int main()
 {
-    Create_Trees(5, 7);
+    Create_Trees(MAX_NB_OF_TREES, MAX_SZ_OF_TREE);
 }
 void Create_Trees(int max_number_of_trees, int max_size_of_tree)
 {
