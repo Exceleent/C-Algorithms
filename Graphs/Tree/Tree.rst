@@ -3,13 +3,22 @@ C++ Tree
 ***************
 In computer science, a tree is a widely used abstract data type (ADT)—or data structure implementing this ADT—that simulates a hierarchical tree structure, with a root value and subtrees of children with a parent node, represented as a set of linked nodes.
 
-Functions
+Quick Overview
+--------------
+In my implementation of a tree I used structure Node. Each node holds his value , pointer to the parent and vector of pointers to his children.
+
+
+Function
 ------------
- * push(x) - push x element on the top of queue.
- * pop() - remove last element of queue.
- * showfront() - return first element of queue. 
- * size() - return size of queue.
- * empty() - checks if queue is empty.
+* Tree();
+* Tree(const Tree &tree);
+* void insert(V x);
+* int size() const;
+* Node *return_root() const;
+* void print();
+* Tree swap(Tree swap, V parent1, V value1, V parent2, V value2);
+* Node *find_node(V parent, V value);
+* void catch_node(V parent, V value);
 
 Interface
 ----------
