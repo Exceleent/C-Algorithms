@@ -24,5 +24,5 @@ Program creates set of trees size defined by user. Then randomly choose 2 trees,
 
 Compiling and running
 ----------
-   Compiling:       g++ -std=c++17 Tree.cpp main.cpp -o main
-   Runing:          ./main
+   ```Compiling:       g++ -std=c++17 Tree.cpp main.cpp -o main
+   ```Runing:          ./main
