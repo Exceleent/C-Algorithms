@@ -2,10 +2,6 @@
 C++ BinaryTree
 ***************
 In computer science, a binary tree is a tree data structure in which each node has at most two children, which are referred to as the left child and the right child. Thanks to it structures BinaryTree allow fast insertion, find and remove operations.
-Quick Overview
---------------
-In my implementation of a tree I used structure Node. Each node holds his value , pointer to the parent and two pointer,  one to left child , second one to right child (Wrote in c++ standard 11 ).
-
 
 Functions
 ------------
