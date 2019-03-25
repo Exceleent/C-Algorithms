@@ -8,7 +8,7 @@ Quick Overview
 In my implementation of a tree I used structure Node. Each node holds his value , pointer to the parent and vector of pointers to his children(Wrote in c++ standard 17 ).
 
 
-Function
+Functions
 ------------
 * insert(V x) - Adding element x to the tree ;
 * size() const - Return size of tree;
