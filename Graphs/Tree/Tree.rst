@@ -10,6 +10,8 @@ In my implementation of a tree I used class Node , Tree and Path. Each node hold
 Status
 -----------
 Currently wroking on 
+
+
 Environment
 -------------
 JetBrains CLion 2018.3.4
