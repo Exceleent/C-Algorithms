@@ -5,18 +5,16 @@ In computer science, a tree is a widely used abstract data type (ADT)—or data 
 
 Quick Overview
 --------------
-In my implementation of a tree I used structure Node. Each node holds his value , pointer to the parent and vector of pointers to his children(Wrote in c++ standard 17 ).
+In my implementation of a tree I used class Node , Tree and Path. Each node holds his value , pointer to the parent and vector of pointers to his children. We can represent each path in tree by using Path class
 
+Status
+-----------
+Currently wroking on 
+Environment
+-------------
+JetBrains CLion 2018.3.4
+Compiler : MinGW w64 6.0
 
-Functions
-------------
-* insert(V x) - Adding element x to the tree ;
-* size() const - Return size of tree;
-* return_root() const - Return root of the tree;
-* print() - Print tree InOrder;
-* swap(Tree swap, V parent1, V value1, V parent2, V value2) - swapping subtrees roots are defined by arguemnts;
-* find_node(V parent, V vale) - Return defined node by arguments, if there is no such node return NULL;
-* catch_node(V parent, V value) - Find node and then print information about him in details ;
 
 main.cpp
 ----------
