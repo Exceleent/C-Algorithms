@@ -2,38 +2,34 @@
 #include <unistd.h>
 #include <time.h>
 #include <stdlib.h>
-#define MAX_NB_OF_TREES 5
-#define MAX_SZ_OF_TREE 7
+#include <experimental/random>
 
 void Create_Trees(int max_number_of_trees, int max_size_of_tree);
 int main()
 {
-    Create_Trees(MAX_NB_OF_TREES, MAX_SZ_OF_TREE);
+    Create_Trees(45, 20);
 }
 void Create_Trees(int max_number_of_trees, int max_size_of_tree)
 {
-    std::cout << "Please wait, it may take a while :)\n";
     int parent_tree1;
     int value_tree1;
     int parent_tree2;
     int value_tree2;
-    srand(time(NULL));
     Tree<int> tree[max_number_of_trees];
-    int number_of_trees = (rand() % max_number_of_trees) + 1;
+    int number_of_trees = std::experimental::randint(1,max_number_of_trees);
     std::vector<Tree<int>> Trees;
     for (int i = 0; i < number_of_trees; i++)
     {
         for (int j = 0; j < max_size_of_tree; j++)
         {
-            tree[i].insert(rand() % 10000 * max_size_of_tree);
-            usleep(300000);
+            tree[i].insert(std::experimental::randint(1,max_size_of_tree*100));
         }
         Trees.push_back(tree[i]);
     }
     std::cout << Trees.size();
     std::cout << "\n";
-    int index1 = rand() % Trees.size();
-    int index2 = rand() % Trees.size();
+    int index1 = std::experimental::randint(0,(int)Trees.size()-1);
+    int index2 = std::experimental::randint(0,(int)Trees.size()-1);
     Trees[index1].print();
     std::cout << "\n";
     Trees[index2].print();
@@ -45,4 +41,13 @@ void Create_Trees(int max_number_of_trees, int max_size_of_tree)
     std::cin >> parent_tree2;
     std::cin >> value_tree2;
     Trees[index1].swap(Trees[index2], parent_tree1, value_tree1, parent_tree2, value_tree2);
+   Trees[index1].unprint();
+   Trees[index2].unprint();
+    Trees[index1].print();
+    std::cout << "\n";
+    Trees[index2].print();
+
+
+
+
 }

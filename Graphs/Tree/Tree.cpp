@@ -4,8 +4,11 @@
 #include <time.h>
 #include <stdlib.h>
 #include <stack>
+#include <queue>
+#include <experimental/random>
+#define MAX_NUMB_OF_PATH 30
 
-struct Node;
+
 template <typename V>
 Tree<V>::Tree()
 {
@@ -26,7 +29,7 @@ int Tree<V>::size() const
 }
 
 template <typename V>
-typename Tree<V>::Node *Tree<V>::return_root() const
+Node<V> *Tree<V>::return_root() const
 {
     return root;
 }
@@ -35,10 +38,9 @@ template <typename V>
 void Tree<V>::insert(V value)
 {
     int type;
-    srand(time(NULL));
-    Node *inserting = new Node;
-    inserting->value = value;
-    inserting->parent = root;
+    Node<V> *inserting = new Node<V>();
+    inserting->set_value(value);
+    inserting->set_parent(root);
     if (size_of_Tree == 0)
     {
         root = inserting;
@@ -46,36 +48,36 @@ void Tree<V>::insert(V value)
     }
     else if (size_of_Tree == 1)
     {
-        inserting->parent = root;
-        root->children.push_back(inserting);
+        inserting->set_parent(root);
+        root->add_child(inserting);
         size_of_Tree++;
     }
     else
     {
-        Node *iterator = new Node;
+        Node<V> *iterator = new Node<V>();
         iterator = root;
         while (true)
         {
-            type = rand() % 2;
+            type = std::experimental::randint(0,1);
             if (type == 0)
             {
-                inserting->parent = iterator;
-                iterator->children.push_back(inserting);
+                inserting->set_parent(iterator);
+                iterator->add_child(inserting);
                 size_of_Tree++;
                 break;
             }
             if (type == 1)
             {
-                if (iterator->children.size() == 0)
+                if (iterator->nb_of_children() == 0)
                 {
-                    inserting->parent = iterator;
-                    iterator->children.push_back(inserting);
+                    inserting->set_parent(iterator);
+                    iterator->add_child(inserting);
                     size_of_Tree++;
                     break;
                 }
                 else
                 {
-                    iterator = iterator->children[rand() % (iterator->children.size())];
+                    iterator = iterator->return_random_child();
                 }
             }
         }
@@ -84,8 +86,8 @@ void Tree<V>::insert(V value)
 template <typename V>
 void Tree<V>::print()
 {
-    std::stack<Node *> mystack;
-    Node *temporary = new Node();
+    std::stack<Node<V> *> mystack;
+    Node<V> *temporary = new Node<V>();
     mystack.push(root);
     while (!mystack.empty())
     {
@@ -93,46 +95,76 @@ void Tree<V>::print()
         mystack.pop();
         if (!temporary->was_visited_print())
         {
-            if (temporary->value == 0)
+            if (temporary->get_value() == 0)
             {
                 std::cout << "(";
             }
-            else if (temporary->value == -1)
+            else if (temporary->get_value() == -1)
             {
                 std::cout << ")";
             }
             else
             {
-                std::cout << temporary->value << " ";
+                std::cout << temporary->get_value() << " ";
             }
             temporary->we_visit_print();
         }
-        if (temporary->children.size() > 0 || !temporary->was_visited_print())
+        if (temporary->nb_of_children() > 0 || !temporary->was_visited_print())
         {
-            Node *temporary_3 = new Node();
-            temporary_3->value = -1;
+            Node<V> *temporary_3 = new Node<V>();
+            temporary_3->set_value(-1);
             mystack.push(temporary_3);
         }
-        for (int i = 0; i < temporary->children.size(); i++)
+        for (int i = 0; i < temporary->nb_of_children(); i++)
         {
-            if (!(temporary->children[i]->was_visited_print()))
+            if (!(temporary->return_child(i)->was_visited_print()))
             {
-                mystack.push((temporary->children[i]));
+                mystack.push((temporary->return_child(i)));
             }
         }
-        if (temporary->children.size() > 0 || !temporary->was_visited_print())
+        if (temporary->nb_of_children() > 0 || !temporary->was_visited_print())
         {
-            Node *temporary_2 = new Node();
-            temporary_2->value = 0;
+            Node<V> *temporary_2 = new Node<V>();
+            temporary_2->set_value(0);
             mystack.push(temporary_2);
         }
     }
 }
 template <typename V>
-typename Tree<V>::Node *Tree<V>::find_node(V parent, V value)
+void Tree<V>::unprint()
 {
-    std::stack<Node *> mystack;
-    Node *temporary = new Node();
+    std::stack<Node<V> *> mystack;
+    Node<V> *temporary = new Node<V>();
+    mystack.push(root);
+    while (!mystack.empty())
+    {
+        temporary = mystack.top();
+        mystack.pop();
+        if (!temporary->was_visited_print())
+        {
+            std::cout << temporary->get_value() << " ";
+        }
+        temporary->we_unvisit_print();
+
+        for (int i = 0; i < temporary->nb_of_children(); i++)
+        {
+            if ((temporary->return_child(i)->was_visited_print()))
+            {
+                mystack.push((temporary->return_child(i)));
+            }
+        }
+    }
+}
+
+
+
+
+
+template <typename V>
+Node<V> *Tree<V>::find_node(V parent, V value)
+{
+    std::stack<Node<V> *> mystack;
+    Node<V> *temporary = new Node<V>();
     mystack.push(root);
     while (!mystack.empty())
     {
@@ -140,10 +172,11 @@ typename Tree<V>::Node *Tree<V>::find_node(V parent, V value)
         mystack.pop();
         if (!temporary->was_visited_find())
         {
-            if(temporary == root) {
+            if (temporary == root)
+            {
                 ////
             }
-            else if (temporary->value == value && temporary->parent->value == parent)
+            else if (temporary->get_value() == value && temporary->return_parent()->get_value() == parent)
             {
                 return temporary;
             }
@@ -153,11 +186,11 @@ typename Tree<V>::Node *Tree<V>::find_node(V parent, V value)
             }
             temporary->we_visit_find();
         }
-        for (int i = 0; i < temporary->children.size(); i++)
+        for (int i = 0; i < temporary->nb_of_children(); i++)
         {
-            if (!(temporary->children[i]->was_visited_find()))
+            if (!(temporary->return_child(i)->was_visited_find()))
             {
-                mystack.push((temporary->children[i]));
+                mystack.push((temporary->return_child(i)));
             }
         }
     }
@@ -167,7 +200,7 @@ typename Tree<V>::Node *Tree<V>::find_node(V parent, V value)
 template <typename V>
 void Tree<V>::catch_node(V parent, V value)
 {
-    Node *print = new Node();
+    Node<V> *print = new Node<V>();
     print = this->find_node(parent, value);
     if (print == NULL)
     {
@@ -175,16 +208,17 @@ void Tree<V>::catch_node(V parent, V value)
     }
     else
     {
-        std::cout << print->value;
+        std::cout << print->get_value();
     }
 }
 
 template <typename V>
 Tree<V> Tree<V>::swap(Tree<V> tree, V this_parent, V this_value, V tree_parent, V tree_value)
 {
-    Node *swap = new Node();
-    Node *swap2 = new Node();
-    Node *swap_temp = new Node();
+    Node<V> *swap = new Node<V>();
+    Node<V> *swap2 = new Node<V>();
+    Node<V> *swap_temp = new Node<V>();
+    Node<V> *swap_temp_par = new Node<V>();
     swap = this->find_node(this_parent, this_value);
     swap2 = tree.find_node(tree_parent, tree_value);
     if (swap == NULL || swap2 == NULL)
@@ -193,9 +227,46 @@ Tree<V> Tree<V>::swap(Tree<V> tree, V this_parent, V this_value, V tree_parent, 
     }
     else
     {
+        //*swap_temp_par = *swap->return_parent();
+        //*swap->return_parent() = *swap2->return_parent();
+        //*swap2->return_parent() = *swap_temp_par;
         *swap_temp = *swap;
         *swap = *swap2;
         *swap2 = *swap_temp;
     }
 }
-
+template <typename V>
+void Tree<V>::create_paths()
+{
+    int iterator = 0;
+    Path<V>* tab = new Path<V>[MAX_NUMB_OF_PATH];
+    std::stack<Node<V>*> mystack;
+    std::queue<Node<V>*> myqueue;
+    Node<V> *temporary;
+    mystack.push(root);
+    while (!mystack.empty())
+    {
+        if (temporary->nb_of_children() == 0)
+        {
+            std::cout <<" Jedna Sciezka \t ";
+            tab[iterator].print_Path();
+            vector_paths.push_back(&tab[iterator]);
+            iterator++;
+        }
+        temporary = mystack.top();
+        mystack.pop();
+        tab[iterator].add_to_Path(temporary);
+        for (int i = 0; i < temporary->nb_of_children(); i++)
+        {
+            mystack.push((temporary->return_child(i)));
+            std::cout <<"Wrtosc pushnietego "<< temporary->return_child(i)->get_value() << "\n";
+        }
+    }
+}
+template<typename V>
+void Tree<V>::print_paths(){
+    //std::cout << "print";
+    for(int i = 0 ; i < vector_paths.size() ; i++) {
+        vector_paths[i]->print_Path();
+    }
+}
