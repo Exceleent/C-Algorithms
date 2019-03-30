@@ -5,7 +5,7 @@ In computer science, a tree is a widely used abstract data type (ADT)—or data 
 
 Quick Overview
 --------------
-In my implementation of a tree I used class Node , Tree and Path. Each node holds his value , pointer to the parent and vector of pointers to his children. We can represent each path in tree by using Path class
+In my implementation of a tree I used class Node , Tree and Path. Each node holds his value , pointer to the parent and vector of pointers to his children. We can represent each path in tree by using Path class.
 
 Status
 -----------
@@ -14,8 +14,9 @@ Currently working on
 
 Environment
 -------------
-JetBrains CLion 2018.3.4 
-Compiler : MinGW w64 6.0
+JetBrains CLion 2018.3.4.
+
+Compiler : MinGW w64 6.0.
 
 
 main.cpp
