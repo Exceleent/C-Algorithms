@@ -14,7 +14,8 @@ Currently working on
 
 Environment
 -------------
-JetBrains CLion 2018.3.4
+JetBrains CLion 2018.3.4 
+
 Compiler : MinGW w64 6.0
 
 
