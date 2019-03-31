@@ -27,3 +27,24 @@ void Path<V>::print_Path()
     }
     std::cout << "\n";
 }
+template <typename V>
+void Path<V>::add_element_size() {
+    size++;
+}
+template <typename  V>
+int Path<V>::return_size() {
+    return size;
+}
+template <typename  V>
+void Path<V>::count_cost(){
+    for(int i = 0 ; i < size ; i++) {
+        cost += Path_vec[i]->get_value();
+    }
+}
+template <typename  V>
+V Path<V>::return_cost(){
+    this->count_cost();
+    return cost;
+}
+
+

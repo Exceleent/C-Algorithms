@@ -6,6 +6,10 @@
 #include <stack>
 #include <queue>
 #include <experimental/random>
+#include <fstream>
+#include <sstream>
+
+
 #define MAX_NUMB_OF_PATH 30
 
 
@@ -129,6 +133,7 @@ void Tree<V>::print()
             mystack.push(temporary_2);
         }
     }
+    this->unprint();
 }
 template <typename V>
 void Tree<V>::unprint()
@@ -213,7 +218,7 @@ void Tree<V>::catch_node(V parent, V value)
 }
 
 template <typename V>
-Tree<V> Tree<V>::swap(Tree<V> tree, V this_parent, V this_value, V tree_parent, V tree_value)
+void Tree<V>::swap(Tree<V> tree, V this_parent, V this_value, V tree_parent, V tree_value)
 {
     Node<V> *swap = new Node<V>();
     Node<V> *swap2 = new Node<V>();
@@ -236,37 +241,62 @@ Tree<V> Tree<V>::swap(Tree<V> tree, V this_parent, V this_value, V tree_parent, 
     }
 }
 template <typename V>
-void Tree<V>::create_paths()
+void Tree<V>::create_path_tostream(Node<V>*node,Node<V>* path[],int lenght , std::ofstream &myfile)
 {
-    int iterator = 0;
-    Path<V>* tab = new Path<V>[MAX_NUMB_OF_PATH];
-    std::stack<Node<V>*> mystack;
-    std::queue<Node<V>*> myqueue;
-    Node<V> *temporary;
-    mystack.push(root);
-    while (!mystack.empty())
-    {
-        if (temporary->nb_of_children() == 0)
-        {
-            std::cout <<" Jedna Sciezka \t ";
-            tab[iterator].print_Path();
-            vector_paths.push_back(&tab[iterator]);
-            iterator++;
+    if(node == NULL) {
+        exit(0);
+    }
+    path[lenght] = node;
+    lenght++;
+    if(node->nb_of_children() == 0) {
+        for(int i = 0 ; i < lenght; i++) {
+            myfile << path[i]->get_value() << " \t";
         }
-        temporary = mystack.top();
-        mystack.pop();
-        tab[iterator].add_to_Path(temporary);
-        for (int i = 0; i < temporary->nb_of_children(); i++)
-        {
-            mystack.push((temporary->return_child(i)));
-            std::cout <<"Wrtosc pushnietego "<< temporary->return_child(i)->get_value() << "\n";
+        myfile << "\n";
+    }
+    else {
+        for(int i = 0 ; i < node->nb_of_children() ; i++) {
+            create_path_tostream(node->return_child(i),path,lenght,myfile);
         }
     }
 }
+
+template <typename  V>
+void Tree<V>::create_path_fromstream( std::ifstream &stream){
+    Path<int>* simple_path = new Path<int>();
+    std::string str;
+    std::stringstream iss ;
+    std::string temp;
+    int found;
+    while(std::getline(stream,str)){
+        iss << str;
+        while(!iss.eof()) {
+            iss >> temp;
+            if(std::stringstream(temp) >> found) {
+                Node<int>* k = new Node<int>();
+                k->set_value(found);
+                simple_path->add_to_Path(k);
+            }
+            temp = "";
+        }
+        this->add_path(simple_path);
+        simple_path = new Path<int>();
+        iss.clear();
+    }
+}
+
 template<typename V>
 void Tree<V>::print_paths(){
-    //std::cout << "print";
     for(int i = 0 ; i < vector_paths.size() ; i++) {
         vector_paths[i]->print_Path();
     }
 }
+template <typename V>
+void Tree<V>::add_path(Path<V>* path){
+    vector_paths.push_back(path);
+}
+template  <typename V>
+V Tree<V>::return_cost_of_path(int index){
+     return vector_paths[index]->return_cost();
+}
+
